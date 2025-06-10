@@ -8,6 +8,7 @@ import { QueryOmdbDto } from './dto/query-omdb.dto';
 
 @Controller('omdb')
 export class OmdbController {
+
   constructor(private readonly omdbService: OmdbService) {}
 
   @Post('searchByTitle')

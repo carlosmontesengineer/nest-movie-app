@@ -8,12 +8,17 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
-      transform:true,
-      transformOptions:{
-        enableImplicitConversion:true
-      }
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
     })
   );
+
+  app.enableCors({
+    origin: 'http://localhost:4200', // origen del frontend
+    credentials: true, // permite cookies o headers de autenticación
+  });
   app.setGlobalPrefix('api');
   await app.listen(3000);
 }

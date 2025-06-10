@@ -5,15 +5,20 @@ import { lastValueFrom } from 'rxjs';
 import { MovieSearchResponse } from 'src/interfaces/movies.interface';
 import { QueryOmdbDto } from './dto/query-omdb.dto';
 
+ 
+
 @Injectable()
 export class OmdbService {
-  private readonly apiKey: string = '47468f4c';
-  private readonly baseUrl = 'http://www.omdbapi.com/';
+  private readonly apiKey:string;
+  private readonly baseUrl:string;
 
   constructor(
     private readonly httpService: HttpService,
     private readonly configService: ConfigService
-  ) {}
+  ) {
+    this.apiKey = configService.get('OMDB_API_KEY');
+    this.baseUrl = configService.get('OMDB_URL')
+  }
 
   async searchMovieByTitle(queryOmdDto: QueryOmdbDto) {
     const url = this.buildSearchUrl(queryOmdDto);

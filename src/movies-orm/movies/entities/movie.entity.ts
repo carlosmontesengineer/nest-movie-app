@@ -13,7 +13,7 @@ export class Movie {
   title: string;
 
   @Column('varchar', {
-    length: 5,
+    length: 15,
   })
   year: string;
 

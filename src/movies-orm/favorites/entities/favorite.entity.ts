@@ -15,7 +15,7 @@ export class Favorite {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Movie, (movie) => movie.favorites)
+  @ManyToOne(() => Movie, (movie) => movie.favorites,{eager:true})
   movie: Movie;
 
   @ManyToOne(() => User, (user) => user.favorites)

@@ -32,13 +32,23 @@ export class MoviesService {
     }
   }
 
-  findAll(paginationDto: PaginationDto) {
+
+
+  async findAll(paginationDto: PaginationDto) {
     const { limit = 10, offset = 0 } = paginationDto;
-    return this.movieRepository.find({
+    const movies = await this.movieRepository.find({
       take: limit,
       skip: offset,
       //todo relaciones
     });
+
+    const totalMovies = await this.movieRepository.count();
+
+    return {
+      count: totalMovies,
+      pages: Math.ceil(totalMovies / limit),
+      movies,
+    };
   }
 
   async findOne(query: string) {
@@ -58,8 +68,7 @@ export class MoviesService {
       ...updateMovieDto,
     });
 
-    if (!movie)
-      throw new NotFoundException(`Movie with id: ${id} not found`);
+    if (!movie) throw new NotFoundException(`Movie with id: ${id} not found`);
 
     try {
       await this.movieRepository.save(movie);

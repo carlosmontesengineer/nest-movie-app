@@ -7,7 +7,6 @@ import {
   Param,
   Delete,
   ParseUUIDPipe,
-  Query,
 } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -23,8 +22,8 @@ export class MoviesController {
     return this.moviesService.create(createMovieDto);
   }
 
-  @Get()
-  findAll(@Query() paginationDto: PaginationDto) {
+  @Post('get-all')
+  findAll(@Body() paginationDto: PaginationDto) {
     return this.moviesService.findAll(paginationDto);
   }
 

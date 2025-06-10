@@ -21,6 +21,22 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {}
 
+   async checkAuthStatus( user: User ){
+
+    return {
+      user,
+      token: this.getJwtToken({ id: user.id })
+    };
+
+  }
+
+    private getJwtToken( payload: JwtPayload ) {
+
+    const token = this.jwtService.sign( payload );
+    return token;
+
+  }
+
   async create(createUserDto: CreateUserDto) {
     try {
       const { password, ...userData } = createUserDto;

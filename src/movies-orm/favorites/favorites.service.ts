@@ -46,7 +46,7 @@ export class FavoritesService {
   async findAll(id: string) {
     const favorites = await this.favoriteRepository.find({
       where: { user: { id } },
-      relations: ['movie', 'user'],
+      relations: ['movie'],
     });
 
     if (favorites.length === 0)
@@ -65,6 +65,19 @@ export class FavoritesService {
       this.handleDBExceptions(error);
     }
   }
+
+   async getComments(id: string) {
+    try {
+      const favorites = await this.favoriteRepository.find({
+        where: { movie:{id}},
+         relations: ['movie'],
+      });
+      return favorites;
+    } catch (error) {
+      this.handleDBExceptions(error);
+    }
+  }
+ 
 
   async update(id: string, updateFavoriteDto: UpdateFavoriteDto) {
     const favorite = await this.favoriteRepository.preload({

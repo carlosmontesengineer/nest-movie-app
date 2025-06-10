@@ -1,4 +1,4 @@
-import { IsIn, IsNumberString, IsString, MinLength } from "class-validator";
+import { IsIn , IsString, MinLength } from "class-validator";
 
 export class CreateMovieDto {
 
@@ -7,7 +7,7 @@ export class CreateMovieDto {
       @MinLength(1)
       title:string;
       
-      @IsNumberString()
+      @IsString()
       year:string;
     
       @IsString()

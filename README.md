@@ -5,9 +5,10 @@
 # Movies DB API
 
 1. Clonar proyecto.
-2. ejecutar: ``` npm install```
-3. clonar el archivo ``` .env.template ``` y renombrarlo a ``` .env ```
-4. Cambiar las variables de entorno
+2. ejecutar: ``` npm install``` para instalar dependencias
+3. clonar el archivo ``` .env.template ``` y renombrarlo a ``` .env ``` por seguridad.
+4. Cambiar las variables de entorno (Se envian por otro medio ya que no se le hace seguimiento en git)
+5. Tener instalado docker en el equipo, debe estar corriendo.
 5. Levantar la base de datos
 ```
  docker-compose up -d 

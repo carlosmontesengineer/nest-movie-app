@@ -20,14 +20,17 @@ export class FavoritesController {
   constructor(private readonly favoritesService: FavoritesService) {}
 
   @Post()
-   @UseGuards(AuthGuard())
-  create(@GetUser('id') userId:string, @Body() createFavoriteDto: CreateFavoriteDto) {
+  @UseGuards(AuthGuard())
+  create(
+    @GetUser('id') userId: string,
+    @Body() createFavoriteDto: CreateFavoriteDto
+  ) {
     return this.favoritesService.create(createFavoriteDto, userId);
   }
 
   @Get()
   @UseGuards(AuthGuard())
-  findAll(@GetUser('id') id:string) {
+  findAll(@GetUser('id') id: string) {
     return this.favoritesService.findAll(id);
   }
 
@@ -42,6 +45,11 @@ export class FavoritesController {
     @Body() updateFavoriteDto: UpdateFavoriteDto
   ) {
     return this.favoritesService.update(id, updateFavoriteDto);
+  }
+
+  @Get('coments/:id')
+  getComentsByMovieId(@Param('id') id: string) {
+    return this.favoritesService.getComments(id);
   }
 
   @Delete(':id')
