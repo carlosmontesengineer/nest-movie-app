@@ -1,0 +1,612 @@
+{
+	"info": {
+		"_postman_id": "881e93cb-e3f5-4119-87fd-f839fbf12bee",
+		"name": "movies api",
+		"description": "Es una api creada en NestJs la cual tiene dos funciones principales, la primera consultar y consumir datos de otra api. Tambien su funcion es ingresar peliculas favoritas de los usuarios a la base de datos y otros cruds necesarios.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15337038"
+	},
+	"item": [
+		{
+			"name": "movies",
+			"item": [
+				{
+					"name": "create Movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Superman 23\",\r\n    \"year\":\"2025\",\r\n    \"imdbID\":\"tt0372784\",\r\n    \"type\":\"movie\",\r\n    \"poster\":\"https://m.media-amazon.com/images/M/MV5BMjg1ZGRiMTEtYmU4Zi00NTkwLWJmODQtMjU3MTAyMGQ2OGZlXkEyXkFqcGc@._V1_SX300.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/movies",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movies"
+							]
+						},
+						"description": "**Agregar Película**\n\nEste endpoint permite a los usuarios agregar una nueva película a la base de datos. La solicitud requiere un cuerpo en formato JSON que contenga los detalles de la película.\n\n**Cuerpo de la Solicitud**\n\nEl cuerpo de la solicitud debe estar en formato JSON e incluir los siguientes parámetros:\n\n- **title** (string): El título de la película.\n    \n- **year** (string): El año de estreno de la película.\n    \n- **imdbID** (string): El identificador único de la película en la base de datos de IMDb.\n    \n- **type** (string): El tipo de medio (por ejemplo, película, serie).\n    \n- **poster** (string): Una URL de la imagen del póster de la película.\n    \n\n**Ejemplo de Cuerpo de Solicitud**\n\n``` json\n{\n  \"title\": \"Superman 23\",\n  \"year\": \"2025\",\n  \"imdbID\": \"tt0372784\",\n  \"type\": \"movie\",\n  \"poster\": \"https://m.media-amazon.com/ima ...\"\n\n ```"
+					},
+					"response": [
+						{
+							"name": "create Movie",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Superman 23\",\r\n    \"year\":\"2025\",\r\n    \"imdbID\":\"tt0372784\",\r\n    \"type\":\"movie\",\r\n    \"poster\":\"https://m.media-amazon.com/images/M/MV5BMjg1ZGRiMTEtYmU4Zi00NTkwLWJmODQtMjU3MTAyMGQ2OGZlXkEyXkFqcGc@._V1_SX300.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/movies",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"movies"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:4200"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "243"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f3-E0vXczECtDdGY3e+kjZIA8huqHI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 10 Jun 2025 08:20:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"Superman 23\",\n    \"year\": \"2025\",\n    \"imdbID\": \"tt0372784\",\n    \"type\": \"movie\",\n    \"poster\": \"https://m.media-amazon.com/images/M/MV5BMjg1ZGRiMTEtYmU4Zi00NTkwLWJmODQtMjU3MTAyMGQ2OGZlXkEyXkFqcGc@._V1_SX300.jpg\",\n    \"id\": \"b5990fad-1acb-468c-b864-7d116485b286\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get all movies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvc21vbkBnbWFpbC5jb20iLCJpZCI6Ijg1MTlhNDIyLThiM2ItNDhiNi1hNmZhLTM3MjRiMWQyMzM0NCIsImlhdCI6MTc0OTI0MjI4NSwiZXhwIjoxNzQ5MjQ1ODg1fQ.4b9oOY5GibXvYyENu2MEP-wY_AWzcJKYV2CFqJImDmU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"limit\":2,\r\n    \"offset\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/movies/get-all",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movies",
+								"get-all"
+							]
+						},
+						"description": "## Get All Movies\n\nThis endpoint retrieves a list of movies from the database. It allows the user to paginate through the results by specifying a limit and an offset.\n\n### Request\n\n- **Method**: POST\n    \n- **URL**: `localhost:3000/api/movies/get-all`\n    \n- **Request Body**: The request must include a JSON object with the following parameters:\n    \n    - `limit` (integer): The maximum number of movie records to return.\n        \n    - `offset` (integer): The number of records to skip before starting to collect the result set.\n        \n\n#### Example Request Body\n\n``` json\n{\n  \"limit\": 2,\n  \"offset\": 2\n}\n\n ```\n\n### Response\n\nThe response will contain a JSON object with the following structure:\n\n- `movies` (array): An array of movie objects, each containing details about the individual movies.\n    \n- `total` (integer): The total number of movies available in the database, regardless of pagination.\n    \n\n#### Example Response Structure\n\n``` json\n{\n  \"movies\": [\n    {\n      \"id\": \"1\",\n      \"title\": \"Movie Title 1\",\n      \"releaseDate\": \"YYYY-MM-DD\",\n      ...\n    },\n    {\n      \"id\": \"2\",\n      \"title\": \"Movie Title 2\",\n      \"releaseDate\": \"YYYY-MM-DD\",\n      ...\n    }\n  ],\n  \"total\": 10\n}\n\n ```\n\n### Notes\n\n- Ensure that the `limit` and `offset` values are set appropriately to control the pagination of results.\n    \n- The response will vary based on the current state of the database and the parameters provided in the request."
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/movies/este es",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movies",
+								"este es"
+							]
+						},
+						"description": "## API Endpoint: Retrieve Movie Details\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `http://localhost:3000/api/movies/{movieId}`\n    \n\n### Purpose\n\nThis endpoint is designed to retrieve the details of a specific movie based on the provided movie identifier.\n\n### Input Parameters\n\n- **movieId** (path parameter): A unique identifier for the movie. It is required and should be a string that represents the title or ID of the movie you wish to retrieve.\n    \n\n### Response Structure\n\nOn a successful request, the server will respond with a JSON object containing the details of the requested movie. The structure of the response may include the following fields:\n\n- `id`: The unique identifier of the movie.\n    \n- `title`: The title of the movie.\n    \n- `description`: A brief synopsis of the movie.\n    \n- `releaseDate`: The release date of the movie.\n    \n- `genre`: The genre(s) associated with the movie.\n    \n- `rating`: The rating of the movie.\n    \n\n### Example Response\n\n``` json\n{\n  \"id\": \"1\",\n  \"title\": \"Example Movie\",\n  \"description\": \"An example description of the movie.\",\n  \"releaseDate\": \"2023-01-01\",\n  \"genre\": [\"Action\", \"Adventure\"],\n  \"rating\": 8.5\n}\n\n ```\n\nThis endpoint is useful for clients looking to fetch detailed information about a specific movie, enabling them to display or process movie data as needed."
+					},
+					"response": []
+				},
+				{
+					"name": "update movie",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"superman 2222\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/movies/74aaaa47-c95c-473d-85ab-ca7d9ac363d2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movies",
+								"74aaaa47-c95c-473d-85ab-ca7d9ac363d2"
+							]
+						},
+						"description": "### Update Movie Details\n\nThis endpoint allows you to update the details of a specific movie identified by its unique ID. In this case, the movie ID is `74aaaa47-c95c-473d-85ab-ca7d9ac363d2`.\n\n#### Request\n\n- **Method:** PATCH\n    \n- **URL:** `localhost:3000/api/movies/{id}`\n    \n\n#### Request Body\n\nThe request body must be in JSON format and can include the following parameter:\n\n- **title** (string): The new title for the movie. This is a required field that specifies the updated name of the movie.\n    \n\nExample request body:\n\n``` json\n{\n  \"title\": \"superman 2222\"\n}\n\n ```\n\n#### Response\n\nThe response will return a status code indicating the result of the operation. In the last execution, the API returned a `404 Not Found` status, which indicates that the movie with the specified ID does not exist.\n\n- **Status Code:** 404\n    \n- **Content-Type:** application/json\n    \n- {\"message\": \"\",\"error\": \"\",\"statusCode\": 0}\n    \n\n#### Notes\n\n- Ensure that the movie ID provided in the URL is valid and corresponds to an existing movie in the database.\n    \n- A successful update will typically return a `200 OK` status with the updated movie details, but this was not the case in the last execution.\n    \n- Handle the `404 Not Found` response appropriately in your application to inform users when a movie cannot be found."
+					},
+					"response": []
+				}
+			],
+			"description": "Crud de la tabla movies"
+		},
+		{
+			"name": "favorites",
+			"item": [
+				{
+					"name": "get favorites",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvc21vbkBnbWFpbC5jb20iLCJpZCI6Ijg1MTlhNDIyLThiM2ItNDhiNi1hNmZhLTM3MjRiMWQyMzM0NCIsImlhdCI6MTc0OTQ0MjI3MSwiZXhwIjoxNzQ5NDQ1ODcxfQ.c-KLIQ04Tg2k3DDZBzf1hziKl92u4wuDdjt8ydSjR-E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/favorites",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"favorites"
+							]
+						},
+						"description": "## API Endpoint: Get User Favorites\n\n### Purpose\n\nThis endpoint retrieves a list of favorite items associated with the authenticated user. It is useful for applications that need to display a user's favorite selections, such as products, articles, or any other items that can be marked as favorites.\n\n### Request Format\n\n- **Method**: GET\n    \n- **URL**: `http://localhost:3000/api/favorites`\n    \n- **Request Body**: This endpoint does not require a request body.\n    \n\n### Response Structure\n\nUpon a successful request, the server will respond with a JSON object containing the following structure:\n\n``` json\n{\n  \"favorites\": [\n    {\n      \"id\": \"string\",       // Unique identifier for the favorite item\n      \"name\": \"string\",     // Name of the favorite item\n      \"description\": \"string\", // Description of the favorite item\n      \"createdAt\": \"string\", // Timestamp of when the item was added to favorites\n      \"updatedAt\": \"string\"  // Timestamp of the last update to the favorite item\n    },\n    ...\n  ],\n  \"message\": \"string\" // A message indicating the status of the request\n}\n\n ```\n\n### Notes\n\n- The `favorites` array may contain multiple items, depending on how many favorites the user has.\n    \n- Ensure that the user is authenticated to access this endpoint, as it retrieves user-specific data."
+					},
+					"response": []
+				},
+				{
+					"name": "create favorite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvc21vbkBnbWFpbC5jb20iLCJpZCI6Ijg1MTlhNDIyLThiM2ItNDhiNi1hNmZhLTM3MjRiMWQyMzM0NCIsImlhdCI6MTc0OTQ2MDM2MSwiZXhwIjoxNzQ5NDYzOTYxfQ.b_HpnwYHdwiInBXqf7FP5SnO4X7Zrx5DTpZzxvl7hak",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movieId\":\"bdab71f7-6bae-4242-a7d1-e1cf33caa955\",\r\n    \"imdbID\":\"bdab71f7-6bae-4242-a7d1-e1cf33caa955\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/favorites",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"favorites"
+							]
+						},
+						"description": "## Add to Favorites API\n\nThis endpoint allows users to add a movie to their favorites list. By sending a POST request to `/api/favorites`, users can specify which movie they wish to favorite by providing the necessary identifiers.\n\n### Request\n\n**Method:** `POST`  \n**Endpoint:** `/api/favorites`\n\n#### Request Body\n\nThe request body must be in JSON format and should include the following parameters:\n\n- **movieId** (string): The unique identifier for the movie that the user wants to add to their favorites.\n    \n- **imdbID** (string): The unique identifier of the movie as per IMDb.\n    \n\nExample of a request body:\n\n``` json\n{\n  \"movieId\": \"bdab71f7-6bae-4242-a7d1-e1cf33...\",\n  \"imdbID\": \"bdab71f7-6bae-4242-a7d1-e1cf33...\"\n}\n\n ```\n\n### Response\n\nThe response will contain the status of the operation. It typically includes:\n\n- A confirmation message indicating that the movie has been successfully added to the favorites list.\n    \n- Any relevant data regarding the updated favorites list or the specific entry that was added.\n    \n\n### Expected Response Structure\n\nThe expected response is in JSON format and may look like this:\n\n``` json\n{\n  \"message\": \"Movie added to favorites successfully.\",\n  \"favorite\": {\n    \"movieId\": \"bdab71f7-6bae-4242-a7d1-e1cf33...\",\n    \"imdbID\": \"bdab71f7-6bae-4242-a7d1-e1cf33...\"\n  }\n}\n\n ```\n\n### Notes\n\n- Ensure that the `movieId` and `imdbID` provided in the request body are valid and correspond to an existing movie.\n    \n- This endpoint is designed to enhance user experience by allowing quick access to favorite movies."
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\":4,\r\n    \"comment\":\"Buena pelicula\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/favorites/7f0952c6-03f3-47f0-afbe-f4c73645870f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"favorites",
+								"7f0952c6-03f3-47f0-afbe-f4c73645870f"
+							]
+						},
+						"description": "### PATCH /api/favorites/{id}\n\nThis endpoint is used to update an existing favorite item identified by its unique ID. The request allows users to modify the rating and comment associated with the favorite.\n\n#### Request Body\n\nThe request must include a JSON object with the following parameters:\n\n- **rating** (integer): The new rating for the favorite item. This value should be between 1 and 5.\n    \n- **comment** (string): A textual comment providing feedback or thoughts about the favorite item.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"rating\": 4,\n  \"comment\": \"Buena pelicula\"\n}\n\n ```\n\n#### Response\n\nThe response will contain the status of the operation. In the case of a successful update, the response should return a 200 status code along with the updated favorite item details. However, if the item is not found, a 404 status code will be returned, indicating that the specified favorite item does not exist.\n\n**Example Response:**\n\n``` json\n{\n  \"message\": \"\",\n  \"error\": \"\",\n  \"statusCode\": 0\n}\n\n ```\n\nNote that the response structure may vary based on the outcome of the request. Ensure to handle both successful and error responses appropriately."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/favorites/7f0952c6-03f3-47f0-afbe-f4c73645870f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"favorites",
+								"7f0952c6-03f3-47f0-afbe-f4c73645870f"
+							]
+						},
+						"description": "\n### Delete Favorite Item\n\nThis endpoint allows the user to delete a specific favorite item from their collection. The item to be deleted is identified by a unique identifier (UUID) provided in the URL path.\n\n#### Request Method\n- **DELETE**\n\n#### Request URL\n- `localhost:3000/api/favorites/{id}`\n\n#### URL Parameter\n- `id` (string): The unique identifier of the favorite item to be deleted.\n\n#### Expected Outcome\nUpon successful execution of this request, the specified favorite item will be removed from the user's favorites. A successful deletion typically results in a `204 No Content` response, indicating that the operation was completed without returning any content.\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "omdb",
+			"item": [
+				{
+					"name": "getMovies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.omdbapi.com/?apikey=47468f4c&s=superman",
+							"protocol": "https",
+							"host": [
+								"www",
+								"omdbapi",
+								"com"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "47468f4c"
+								},
+								{
+									"key": "s",
+									"value": "superman"
+								}
+							]
+						},
+						"description": "## API Endpoint: Retrieve Movie Data\n\nThis endpoint allows users to search for movies in the OMDb database using a specific query string.\n\n### Request\n\n**Method:** GET  \n**URL:** `https://www.omdbapi.com/`\n\n#### Query Parameters\n\n- **apikey** (string): Your unique API key to authenticate requests. Replace with your actual API key.\n    \n- **s** (string): The search term for the movie title. In this example, the search term is \"superman\".\n    \n\n### Response\n\nThe response will return a JSON object containing the search results based on the query provided.\n\n#### Response Structure\n\n- **Search** (array): An array of movie objects that match the search criteria.\n    \n    - **Title** (string): The title of the movie.\n        \n    - **Year** (string): The release year of the movie.\n        \n    - **imdbID** (string): The unique identifier for the movie on IMDb.\n        \n    - **Type** (string): The type of media (e.g., movie, series).\n        \n    - **Poster** (string): URL to the movie poster image.\n        \n- **totalResults** (string): The total number of results found for the search query.\n    \n- **Response** (string): Indicates whether the request was successful (e.g., \"True\" or \"False\").\n    \n\n### Notes\n\n- Ensure that you have a valid API key to make requests.\n    \n- The `s` parameter is required to perform a search. If no results are found, the `Search` array will be empty, and the `Response` field will indicate the status of the request."
+					},
+					"response": [
+						{
+							"name": "getMovies",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://www.omdbapi.com/?apikey=47468f4c&s=batman",
+									"protocol": "https",
+									"host": [
+										"www",
+										"omdbapi",
+										"com"
+									],
+									"path": [
+										""
+									],
+									"query": [
+										{
+											"key": "apikey",
+											"value": "47468f4c"
+										},
+										{
+											"key": "s",
+											"value": "batman"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 10 Jun 2025 08:16:52 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "br"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "public, max-age=86400"
+								},
+								{
+									"key": "Expires",
+									"value": "Mon, 09 Jun 2025 07:47:54 GMT"
+								},
+								{
+									"key": "Last-Modified",
+									"value": "Mon, 09 Jun 2025 06:47:54 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "*, Accept-Encoding"
+								},
+								{
+									"key": "X-Aspnet-Version",
+									"value": "4.0.30319"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "ASP.NET"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Cf-Cache-Status",
+									"value": "HIT"
+								},
+								{
+									"key": "Age",
+									"value": "91738"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "Cf-Ray",
+									"value": "94d76dd8ceb921b7-BOG"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Search\": [\n        {\n            \"Title\": \"Batman Begins\",\n            \"Year\": \"2005\",\n            \"imdbID\": \"tt0372784\",\n            \"Type\": \"movie\",\n            \"Poster\": \"https://m.media-amazon.com/images/M/MV5BODIyMDdhNTgtNDlmOC00MjUxLWE2NDItODA5MTdkNzY3ZTdhXkEyXkFqcGc@._V1_SX300.jpg\"\n        },\n        {\n            \"Title\": \"The Batman\",\n            \"Year\": \"2022\",\n            \"imdbID\": \"tt1877830\",\n            \"Type\": \"movie\",\n            \"Poster\": \"https://m.media-amazon.com/images/M/MV5BMmU5NGJlMzAtMGNmOC00YjJjLTgyMzUtNjAyYmE4Njg5YWMyXkEyXkFqcGc@._V1_SX300.jpg\"\n        },\n        {\n            \"Title\": \"Batman v Superman: Dawn of Justice\",\n            \"Year\": \"2016\",\n            \"imdbID\": \"tt2975590\",\n            \"Type\": \"movie\",\n            \"Poster\": \"https://m.media-amazon.com/images/M/MV5BZTJkYjdmYjYtOGMyNC00ZGU1LThkY2ItYTc1OTVlMmE2YWY1XkEyXkFqcGc@._V1_SX300.jpg\"\n        },\n        {\n            \"Title\": \"Batman\",\n            \"Year\": \"1989\",\n            \"imdbID\": \"tt0096895\",\n            \"Type\": \"movie\",\n            \"Poster\": \"https://m.media-amazon.com/images/M/MV5BYzZmZWViM2EtNzhlMi00NzBlLWE0MWEtZDFjMjk3YjIyNTBhXkEyXkFqcGc@._V1_SX300.jpg\"\n        },\n        {\n            \"Title\": \"Batman Returns\",\n            \"Year\": \"1992\",\n            \"imdbID\": \"tt0103776\",\n            \"Type\": \"movie\",\n            \"Poster\": \"https://m.media-amazon.com/images/M/MV5BZTliMDVkYTktZDdlMS00NTAwLWJhNzYtMWIwMDZjN2ViMGFiXkEyXkFqcGc@._V1_SX300.jpg\"\n        },\n        {\n            \"Title\": \"Batman & Robin\",\n            \"Year\": \"1997\",\n            \"imdbID\": \"tt0118688\",\n            \"Type\": \"movie\",\n            \"Poster\": \"https://m.media-amazon.com/images/M/MV5BYzU3ZjE3M2UtM2E4Ni00MDI5LTkyZGUtOTFkMGIyYjNjZGU3XkEyXkFqcGc@._V1_SX300.jpg\"\n        },\n        {\n            \"Title\": \"Batman Forever\",\n            \"Year\": \"1995\",\n            \"imdbID\": \"tt0112462\",\n            \"Type\": \"movie\",\n            \"Poster\": \"https://m.media-amazon.com/images/M/MV5BMTUyNjJhZWItMTZkNS00NDc4LTllNjUtYTg3NjczMzA5ZTViXkEyXkFqcGc@._V1_SX300.jpg\"\n        },\n        {\n            \"Title\": \"The Lego Batman Movie\",\n            \"Year\": \"2017\",\n            \"imdbID\": \"tt4116284\",\n            \"Type\": \"movie\",\n            \"Poster\": \"https://m.media-amazon.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_SX300.jpg\"\n        },\n        {\n            \"Title\": \"Batman: The Animated Series\",\n            \"Year\": \"1992–1995\",\n            \"imdbID\": \"tt0103359\",\n            \"Type\": \"series\",\n            \"Poster\": \"https://m.media-amazon.com/images/M/MV5BYjgwZWUzMzUtYTFkNi00MzM0LWFkMWUtMDViMjMxNGIxNDUxXkEyXkFqcGc@._V1_SX300.jpg\"\n        },\n        {\n            \"Title\": \"Batman v Superman: Dawn of Justice (Ultimate Edition)\",\n            \"Year\": \"2016\",\n            \"imdbID\": \"tt18689424\",\n            \"Type\": \"movie\",\n            \"Poster\": \"https://m.media-amazon.com/images/M/MV5BOTRlNWQwM2ItNjkyZC00MGI3LThkYjktZmE5N2FlMzcyNTIyXkEyXkFqcGdeQXVyMTEyNzgwMDUw._V1_SX300.jpg\"\n        }\n    ],\n    \"totalResults\": \"608\",\n    \"Response\": \"True\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get movies by title",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"superman\",\r\n    \"page\":\"1\",\r\n    \"type\":\"series\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/omdb/searchByTitle",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"omdb",
+								"searchByTitle"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "batman",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						},
+						"description": "### Search for Media by Title\n\nThis endpoint allows users to search for media items (such as movies or series) based on a specific title. It retrieves information from the OMDB (Open Movie Database) API.\n\n#### Request\n\n- **Method**: POST\n    \n- **URL**: `localhost:3000/api/omdb/searchByTitle`\n    \n\n#### Request Body Parameters\n\nThe request body should be in JSON format and include the following parameters:\n\n- **title** (string, required): The title of the media item you want to search for.\n    \n- **page** (string, optional): The page number of the results to retrieve. This is useful for paginating through search results.\n    \n- **type** (string, optional): The type of media to search for. This can be 'movie', 'series', or other types depending on the API's capabilities.\n    \n\n##### Example Request Body\n\n``` json\n{\n  \"title\": \"superman\",\n  \"page\": \"1\",\n  \"type\": \"series\"\n}\n\n ```\n\n#### Response\n\nThe response will contain a JSON object with the search results. The structure of the response typically includes:\n\n- **Search Results**: An array of media items that match the search criteria, each containing details such as title, year, type, and additional metadata.\n    \n- **Total Results**: A count of the total number of results found for the given query.\n    \n- **Response Status**: Indicates whether the request was successful or if there were errors.\n    \n\n##### Example Response Structure\n\n``` json\n{\n  \"Search\": [\n    {\n      \"Title\": \"Superman\",\n      \"Year\": \"1978\",\n      \"Type\": \"movie\",\n      ...\n    }\n  ],\n  \"totalResults\": \"100\",\n  \"Response\": \"True\"\n}\n\n ```\n\nThis endpoint is useful for applications that require searching capabilities for media content, enabling users to find specific titles efficiently."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "createUSer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"daniel@gmail.com\",\r\n    \"password\":\"Daniel23\",\r\n    \"fullName\": \"Daniel\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": "## Register User Endpoint\n\nThis endpoint is used to register a new user in the system. By sending a POST request to `/api/auth/register`, clients can create a new user account by providing the necessary user information.\n\n### Request Parameters\n\nThe request body must be in JSON format and include the following parameters:\n\n- **email** (string): The email address of the user. This must be a valid email format and will be used for account verification and login.\n    \n- **password** (string): The password chosen by the user. It should adhere to security best practices, including length and complexity.\n    \n- **fullName** (string): The full name of the user. This will be used for display purposes within the application.\n    \n\n### Example Request Body\n\n``` json\n{\n  \"email\": \"user@example.com\",\n  \"password\": \"YourSecurePassword\",\n  \"fullName\": \"Your Full Name\"\n}\n\n ```\n\n### Response Structure\n\nUpon successful registration, the server will respond with a JSON object containing the following information:\n\n- **email** (string): The email address of the registered user.\n    \n- **fullName** (string): The full name of the registered user.\n    \n- **id** (string): A unique identifier for the registered user.\n    \n- **isActive** (boolean): Indicates whether the user account is active.\n    \n- **token** (string): A token that can be used for authentication in subsequent requests.\n    \n\n### Example Response\n\n``` json\n{\n  \"email\": \"\",\n  \"fullName\": \"\",\n  \"id\": \"\",\n  \"isActive\": true,\n  \"token\": \"\"\n}\n\n ```\n\n### Notes\n\n- Ensure that the email provided is unique and not already in use.\n    \n- Passwords should be stored securely and not returned in the response for security reasons.\n    \n- Handle any validation errors appropriately to guide the user in correcting their input."
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"carlosmon@gmail.com\",\r\n    \"password\":\"Carlos2027\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "## Login Endpoint\n\nThis endpoint is used to authenticate users by logging them into the application. It accepts user credentials and returns a response containing user information and an authentication token.\n\n### Request\n\n- **Method:** POST\n    \n- **URL:** `http://localhost:3000/api/auth/login`\n    \n\n#### Request Body\n\nThe request body must be in JSON format and contain the following parameters:\n\n- `email` (string): The email address of the user attempting to log in.\n    \n- `password` (string): The password associated with the user's account.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"email\": \"user@example.com\",\n  \"password\": \"yourpassword\"\n}\n\n ```\n\n### Response\n\nOn successful authentication, the server responds with a status code of `201 Created` and a JSON object containing the following fields:\n\n- `id` (string): The unique identifier of the user.\n    \n- `email` (string): The email address of the authenticated user.\n    \n- `password` (string): The password (usually hashed) for internal use; may not be returned for security reasons.\n    \n- `token` (string): A JWT or similar token used for subsequent authenticated requests.\n    \n\n**Example Response:**\n\n``` json\n{\n  \"id\": \"user_id\",\n  \"email\": \"user@example.com\",\n  \"password\": \"hashed_password\",\n  \"token\": \"your_auth_token\"\n}\n\n ```\n\n### Additional Notes\n\n- Ensure that the email and password are correctly formatted and valid for successful authentication.\n    \n- The token returned in the response should be stored securely and used for authenticating future requests to protected endpoints.\n    \n- If authentication fails, the server may return an error response with a different status code and a message indicating the failure reason."
+					},
+					"response": []
+				},
+				{
+					"name": "check-status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvc21vbkBnbWFpbC5jb20iLCJpZCI6Ijg1MTlhNDIyLThiM2ItNDhiNi1hNmZhLTM3MjRiMWQyMzM0NCIsImlhdCI6MTc0OTM1ODMwOSwiZXhwIjoxNzQ5MzYxOTA5fQ.nak642PQeeEe1rePe4wY-F1wvlPUDv24w2WB_DxtZCw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/auth/check-status",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"check-status"
+							]
+						},
+						"description": "## Check User Authentication Status\n\nThis endpoint is used to verify the authentication status of the currently logged-in user. It provides information about the user's account and the validity of their session.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `http://localhost:3000/api/auth/check-status`\n    \n- **Request Body**: This endpoint does not require a request body.\n    \n\n### Response\n\nOn a successful request, the server responds with a JSON object containing the following structure:\n\n- **user**: An object that holds information about the authenticated user.\n    \n    - **id**: (string) The unique identifier for the user.\n        \n    - **email**: (string) The email address associated with the user account.\n        \n    - **fullName**: (string) The full name of the user.\n        \n    - **isActive**: (boolean) Indicates whether the user's account is active.\n        \n- **token**: (string) A token that represents the user's session. This may be used for further authenticated requests.\n    \n\n### Example Response\n\n``` json\n{\n  \"user\": {\n    \"id\": \"\",\n    \"email\": \"\",\n    \"fullName\": \"\",\n    \"isActive\": true\n  },\n  \"token\": \"\"\n}\n\n ```\n\n### Status Codes\n\n- **200 OK**: The request was successful, and the user authentication status is returned."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
